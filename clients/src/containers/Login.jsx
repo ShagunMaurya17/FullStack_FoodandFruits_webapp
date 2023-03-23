@@ -12,7 +12,11 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { app } from "../config/firebase.config";
+import { validateUserJWTToken } from "../api";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const navigate = useNavigate();
   const [userEmail, setUserEmail] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
   const [password, setPassword] = useState("");
@@ -25,12 +29,64 @@ const Login = () => {
       firebaseAuth.onAuthStateChanged((cred) => {
         if (cred) {
           cred.getIdToken().then((token) => {
-            console.log(token);
+            validateUserJWTToken(token).then((data) => {
+              console.log(data);
+            });
+            navigate("/", { replace: true });
           });
         }
       });
     });
   };
+
+  const signUpWithEmailPass = async () => {
+    if (userEmail === "" || password === "" || confirm_password === "") {
+    } else {
+      if (password === confirm_password) {
+        setUserEmail("");
+        setPassword("");
+        setConfirm_password("");
+        await createUserWithEmailAndPassword(
+          firebaseAuth,
+          userEmail,
+          password
+        ).then((userCred) => {
+          firebaseAuth.onAuthStateChanged((cred) => {
+            if (cred) {
+              cred.getIdToken().then((token) => {
+                validateUserJWTToken(token).then((data) => {
+                  console.log(data);
+                });
+                navigate("/", { replace: true });
+              });
+            }
+          });
+        });
+      } else {
+      }
+    }
+  };
+
+  const signInWithEmailPass = async () => {
+    if (userEmail !== "" && password !== "") {
+      await signInWithEmailAndPassword(firebaseAuth, userEmail, password).then(
+        (userCred) => {
+          firebaseAuth.onAuthStateChanged((cred) => {
+            if (cred) {
+              cred.getIdToken().then((token) => {
+                validateUserJWTToken(token).then((data) => {
+                  console.log(data);
+                });
+                navigate("/", { replace: true });
+              });
+            }
+          });
+        }
+      );
+    } else {
+    }
+  };
+
   return (
     <div className=" w-screen h-screen relative overflow-hidden flex">
       {" "}
@@ -111,6 +167,7 @@ const Login = () => {
           {isSignUp ? (
             <motion.button
               {...buttonClick}
+              onClick={signUpWithEmailPass}
               className="w-full px-4 py-2 rounded-md bg-red-400 cursor-pointer text-white text-xl capitalize hover:bg-red-500 transition-all duration-150 "
             >
               Sign Up
@@ -118,6 +175,7 @@ const Login = () => {
           ) : (
             <motion.button
               {...buttonClick}
+              onClick={signInWithEmailPass}
               className="w-full px-4 py-2 rounded-md bg-red-400 cursor-pointer text-white text-xl capitalize hover:bg-red-500 transition-all duration-150 "
             >
               Sign In
