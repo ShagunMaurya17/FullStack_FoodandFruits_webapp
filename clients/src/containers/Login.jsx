@@ -14,6 +14,8 @@ import {
 import { app } from "../config/firebase.config";
 import { validateUserJWTToken } from "../api";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDetails } from "../context/actions/userActions";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,6 +25,14 @@ const Login = () => {
   const [confirm_password, setConfirm_password] = useState("");
   const firebaseAuth = getAuth(app);
   const provider = new GoogleAuthProvider();
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user);
+  useEffect(() => {
+    if (user) {
+      navigate("/", { replace: true });
+    }
+  }, [user]);
 
   const loginWithGoogle = async () => {
     await signInWithPopup(firebaseAuth, provider).then((userCred) => {
@@ -30,7 +40,7 @@ const Login = () => {
         if (cred) {
           cred.getIdToken().then((token) => {
             validateUserJWTToken(token).then((data) => {
-              console.log(data);
+              dispatch(setUserDetails(data));
             });
             navigate("/", { replace: true });
           });
@@ -55,7 +65,7 @@ const Login = () => {
             if (cred) {
               cred.getIdToken().then((token) => {
                 validateUserJWTToken(token).then((data) => {
-                  console.log(data);
+                  dispatch(setUserDetails(data));
                 });
                 navigate("/", { replace: true });
               });
@@ -75,7 +85,7 @@ const Login = () => {
             if (cred) {
               cred.getIdToken().then((token) => {
                 validateUserJWTToken(token).then((data) => {
-                  console.log(data);
+                  dispatch(setUserDetails(data));
                 });
                 navigate("/", { replace: true });
               });
