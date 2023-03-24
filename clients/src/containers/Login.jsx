@@ -40,6 +40,7 @@ const Login = () => {
       firebaseAuth.onAuthStateChanged((cred) => {
         if (cred) {
           cred.getIdToken().then((token) => {
+            // console.log(token);
             validateUserJWTToken(token).then((data) => {
               dispatch(setUserDetails(data));
             });
