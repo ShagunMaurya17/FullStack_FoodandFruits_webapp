@@ -25,9 +25,9 @@ export const addNewProduct = async (data) => {
 
 // get all products
 
-export const addAllProduct = async (data) => {
+export const getAllProducts = async () => {
   try {
-    const res = await axios.post(`${baseURL}/api/products/all`);
+    const res = await axios.get(`${baseURL}/api/products/all`);
     return res.data.data;
   } catch (err) {
     return null;

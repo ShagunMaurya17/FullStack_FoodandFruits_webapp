@@ -20,7 +20,7 @@ import {
 import { motion } from "framer-motion";
 import { buttonClick } from "../animations";
 import { CircularProgress, LinearProgress } from "@mui/material";
-import { addNewProduct } from "../api";
+import { addNewProduct, getAllProducts } from "../api";
 import { setAllProducts } from "../context/actions/productActions";
 
 const DBNewItem = () => {
@@ -93,14 +93,15 @@ const DBNewItem = () => {
       setTimeout(() => {
         dispatch(alertNULL());
       }, 3000);
+
       setImageDownloadURL(null);
       setItemName("");
       setPrice("");
-      setCategory("");
+      setCategory(null);
     });
-    // getAllProducts().then((data) => {
-    //   dispatch(setAllProducts(data));
-    // });
+    getAllProducts().then((data) => {
+      dispatch(setAllProducts(data));
+    });
   };
 
   return (
