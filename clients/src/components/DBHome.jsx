@@ -12,7 +12,8 @@ const DBHome = () => {
         dispatch(setAllProducts(data));
       });
     }
-  });
+  }, []);
+
   return <div>home</div>;
 };
 
