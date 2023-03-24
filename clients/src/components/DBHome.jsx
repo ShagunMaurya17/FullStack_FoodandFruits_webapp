@@ -12,7 +12,7 @@ const DBHome = () => {
         dispatch(setAllProducts(data));
       });
     }
-  }, []);
+  }, [dispatch, products]);
 
   return <div>home</div>;
 };

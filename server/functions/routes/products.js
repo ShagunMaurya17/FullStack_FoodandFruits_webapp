@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
+const { ResultStorage } = require("firebase-functions/v1/testLab");
 const db = admin.firestore();
 const router = require("express").Router();
 db.settings({ ignoreUndefinedProperties: true });
@@ -43,6 +44,22 @@ router.get("/all", async (req, res) => {
       return res.send({ success: false, msg: `Error :${err}` });
     }
   })();
+});
+
+// delete the product
+router.delete("/delete/:productId", async (req, res) => {
+  const productId = req.params.productId;
+  try {
+    await db
+      .collection("products")
+      .doc(`/${productId}/`)
+      .delete()
+      .then((result) => {
+        return res.status(200).send({ success: true, data: result });
+      });
+  } catch (err) {
+    return res.send({ success: false, msg: `Error :${err}` });
+  }
 });
 
 module.exports = router;
