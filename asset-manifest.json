@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/FullStack_FoodandFruits_webapp/static/css/main.fffaa925.css",
+    "main.js": "/FullStack_FoodandFruits_webapp/static/js/main.443d3e5c.js",
+    "static/js/498.75df6f53.chunk.js": "/FullStack_FoodandFruits_webapp/static/js/498.75df6f53.chunk.js",
+    "static/js/703.af95b6f7.chunk.js": "/FullStack_FoodandFruits_webapp/static/js/703.af95b6f7.chunk.js",
+    "static/js/513.1f22796b.chunk.js": "/FullStack_FoodandFruits_webapp/static/js/513.1f22796b.chunk.js",
+    "static/media/bill.jpg": "/FullStack_FoodandFruits_webapp/static/media/bill.5729a88b98874ef09448.jpg",
+    "static/media/mango.png": "/FullStack_FoodandFruits_webapp/static/media/mango.c4214876808e29e86006.png",
+    "static/media/loginBg.jpg": "/FullStack_FoodandFruits_webapp/static/media/loginBg.3d1e40827cbf87d5b1b4.jpg",
+    "static/media/logo.png": "/FullStack_FoodandFruits_webapp/static/media/logo.0f99324454e3c3ccba98.png",
+    "static/media/heroBg.png": "/FullStack_FoodandFruits_webapp/static/media/heroBg.c43c4862422e70d88698.png",
+    "static/media/delivery.png": "/FullStack_FoodandFruits_webapp/static/media/delivery.bf9130a0962fbe091abc.png",
+    "static/media/avatar.png": "/FullStack_FoodandFruits_webapp/static/media/avatar.68cdc4513e601d28a382.png",
+    "index.html": "/FullStack_FoodandFruits_webapp/index.html",
+    "main.fffaa925.css.map": "/FullStack_FoodandFruits_webapp/static/css/main.fffaa925.css.map",
+    "main.443d3e5c.js.map": "/FullStack_FoodandFruits_webapp/static/js/main.443d3e5c.js.map",
+    "498.75df6f53.chunk.js.map": "/FullStack_FoodandFruits_webapp/static/js/498.75df6f53.chunk.js.map",
+    "703.af95b6f7.chunk.js.map": "/FullStack_FoodandFruits_webapp/static/js/703.af95b6f7.chunk.js.map",
+    "513.1f22796b.chunk.js.map": "/FullStack_FoodandFruits_webapp/static/js/513.1f22796b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fffaa925.css",
+    "static/js/main.443d3e5c.js"
+  ]
+}
