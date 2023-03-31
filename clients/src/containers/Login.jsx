@@ -33,7 +33,7 @@ const Login = () => {
     if (user) {
       navigate("/", { replace: true });
     }
-  }, [user]);
+  }, [navigate, user]);
 
   const loginWithGoogle = async () => {
     await signInWithPopup(firebaseAuth, provider).then((userCred) => {

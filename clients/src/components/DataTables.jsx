@@ -15,7 +15,7 @@ const DataTables = ({ columns, data, title, actions }) => {
         dispatch(setAllProducts(data));
       });
     }
-  }, [dispatch, products]);
+  }, []);
   return (
     <div>
       <ThemeProvider theme={defaultMaterialTheme}>

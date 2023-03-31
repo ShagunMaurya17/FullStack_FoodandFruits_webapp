@@ -7,11 +7,13 @@ import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
 import { buttonClick, slideTop } from "../animations";
 import { Avatar, Logo } from "../assets";
 import { app } from "../config/firebase.config";
+import { setCartOn } from "../context/actions/displayCartActions";
 import { setUserNull } from "../context/actions/userActions";
 import { isActiveStyles, isNotActiveStyles } from "../utils/styles";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.cart);
   const [isMenu, setIsMenu] = useState(false);
   const firebaseAuth = getAuth(app);
   const navigate = useNavigate();
@@ -66,11 +68,22 @@ const Header = () => {
             About Us
           </NavLink>
         </ul>
-        <motion.div {...buttonClick} className="relative cursor-pointer">
-          <MdShoppingCart className="text-3xl text-textColor" />
-          <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center absolute -top-4 -right-1">
-            <p className="text-primary text-base font-semibold">2</p>
-          </div>
+        <motion.div
+          {...buttonClick}
+          className="relative cursor-pointer"
+          onClick={() => dispatch(setCartOn())}
+        >
+          <MdShoppingCart
+            className="text-3xl text-textColor"
+            // onClick={console.log(cart?.length)}
+          />
+          {cart?.length > 0 && (
+            <div className="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center absolute -top-4 -right-1">
+              <p className="text-primary text-base font-semibold">
+                {cart?.length}
+              </p>
+            </div>
+          )}
         </motion.div>
         {user ? (
           <>
@@ -92,12 +105,15 @@ const Header = () => {
                   onMouseLeave={() => setIsMenu(false)}
                   className="px-6 py-6 w-48 bg-lightOverlay backdrop-blur-md rounded-md shadow-md absolute top-12 right-0 flex flex-col gap-4"
                 >
-                  <Link
-                    className="hover:text-red-500 text-xl text-textColor "
-                    to={"/dashboard/home"}
-                  >
-                    Dashboard
-                  </Link>
+                  {user?.user_id === process.env.REACT_APP_ADMIN_ID && (
+                    <Link
+                      className="hover:text-red-500 text-xl text-textColor "
+                      to={"/dashboard/home"}
+                    >
+                      Dashboard
+                    </Link>
+                  )}
+
                   <Link
                     className="hover:text-red-500 text-xl text-textColor "
                     to={"/profile"}

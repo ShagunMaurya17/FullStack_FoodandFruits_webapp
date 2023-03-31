@@ -29,10 +29,10 @@ const DBNewItem = () => {
   const [category, setCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(null);
+  
+  const [imageDownloadURL, setImageDownloadURL] = useState(null);
   const alert = useSelector((state) => state.alert);
   const dispatch = useDispatch();
-  const [imageDownloadURL, setImageDownloadURL] = useState(null);
-
   const uploadImage = (e) => {
     setIsLoading(true);
     const imageFile = e.target.files[0];

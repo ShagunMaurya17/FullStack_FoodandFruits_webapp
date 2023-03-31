@@ -9,13 +9,6 @@ import { setAllProducts } from "../context/actions/productActions";
 const DBItems = () => {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (!products) {
-      getAllProducts().then((data) => {
-        dispatch(setAllProducts(data));
-      });
-    }
-  }, [dispatch, products]);
   return (
     <div className="flex items-center justify-self-center gap-4 pt-6 w-full">
       <DataTables
